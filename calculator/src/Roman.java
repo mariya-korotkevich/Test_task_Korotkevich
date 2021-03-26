@@ -28,16 +28,29 @@ public class Roman extends Number{
         String result = "";
 
         if (number == 100) { result = "C";}
+        else if (number >= 90){
+            result += "XC";
+            if (100 - 90 != 10){
+                result += findInDic(100 - 90);
+            }
+        }
         else{
-            int countTen = number / 10;
-            int remain = number % 10;
+            int countFifty = number / 50;
+            int remainFifty = number % 50;
+
+            for (int i = 0; i < countFifty; i++) {
+                result += "L";
+            }
+
+            int countTen = remainFifty / 10;
+            int remainTen = remainFifty % 10;
 
             for (int i = 0; i < countTen; i++) {
                 result += findInDic(10);
             }
 
-            if (remain != 0){
-                result += findInDic(remain);
+            if (remainTen != 0){
+                result += findInDic(remainTen);
             }
         }
        return result;
